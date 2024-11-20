@@ -7,6 +7,8 @@ use App\Http\Controllers\SubAdminController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\TeacherProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +30,16 @@ Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/login',function(){
     return redirect('/');
 });
-Route::get('/',[AuthController::class,'loadLogin']);
+Route::get('/',[AuthController::class,'loadLogin'])->name('loadLogin');
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/logout',[AuthController::class,'logout']);
+Route::get('/check-email/{token}', [PasswordResetController::class, 'success_message'])->name('check.mail');
+Route::get('/forgot-password', [PasswordResetController::class, 'showForgetPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+
+
 
 // ********** Super Admin Routes *********
 Route::group(['prefix' => 'super-admin','middleware'=>['web','isSuperAdmin']],function(){
@@ -48,7 +57,10 @@ Route::group(['prefix' => 'sub-admin','middleware'=>['web','isSubAdmin']],functi
 
 // ********** Admin Routes *********
 Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
-    Route::get('/dashboard',[AdminController::class,'dashboard']);
+    Route::get('/dashboard',[AdminController::class,'dashboard'])->name('teacher-dashboard');
+    Route::get('/teacher-profile',[AdminController::class,'teacher_profile'])->name('teacher-profile');
+    Route::post('/teacher-profile', [TeacherProfileController::class, 'store'])->name('teacher.profile.store');
+    
 });
 
 // ********** User Routes *********
@@ -59,3 +71,4 @@ Route::group(['middleware'=>['web','isUser']],function(){
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+

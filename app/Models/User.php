@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'google_id',
         'photo',
-    
+
     ];
 
     /**
@@ -36,6 +36,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function teacherProfile()
+    {
+        return $this->hasOne(TeacherProfile::class);
+    }
+
 
     /**
      * The attributes that should be cast.
@@ -48,6 +53,6 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasOne(Role::class,'id', 'role');
+        return $this->hasOne(Role::class, 'id', 'name');
     }
 }

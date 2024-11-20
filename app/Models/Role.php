@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+    public function teacherProfiles()
+{
+    return $this->hasMany(TeacherProfile::class);
+}
+
 }

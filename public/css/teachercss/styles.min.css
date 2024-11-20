@@ -19661,15 +19661,22 @@ fieldset:disabled .btn {
 }
 
 .left-sidebar .scroll-sidebar {
-    overflow-y: auto;
+    overflow-y: scroll; /* Ensure scroll functionality exists */
     padding: 0 24px;
     height: calc(100vh - 80px);
-    border-radius: 7px
+    border-radius: 7px;
+
+    scrollbar-width: none; /* Firefox: Hide scrollbar */
+}
+
+.left-sidebar .scroll-sidebar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari: Hide scrollbar */
 }
 
 .left-sidebar .scroll-sidebar .simplebar-track.simplebar-horizontal {
-    visibility: hidden !important
+    visibility: hidden !important;
 }
+
 
 .brand-logo {
     min-height: 70px;
@@ -21039,7 +21046,7 @@ table.fc-header{
 }
 
 .custom-btn.btn-primary {
-    background-color: #007bff;
+    background-color: #22CEFF;
     color: #fff;
     border: none;
 }

@@ -11,4 +11,8 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+    public function teacher_profile()
+    {
+        return view('admin.teacher-profile');
+    }
 }

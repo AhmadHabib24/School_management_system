@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -13,11 +14,16 @@ class AuthController extends Controller
     //
     public function loadRegister()
     {
+        $role = Role::all();
         if(Auth::user()){
             $route = $this->redirectDash();
-            return redirect($route);
+            return redirect($route)->with($role);
         }
         return view('register');
+    }
+    public function pendingview()
+    {
+        return view('pendingmessage');
     }
 
     public function register(Request $request)
@@ -25,13 +31,16 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'string|required|min:2',
             'email' => 'string|email|required|max:100|unique:users',
-            'password' =>'string|required|confirmed|min:6'
+            'password' =>'string|required|confirmed|min:6',
+            'role' => 'required',
         ]);
+        $role = Role::where('name', $request->role)->first();
 
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role = $role->id;
         $user->save();
 
         return redirect('login')->with('success','Your Registration has been successfull.');
@@ -75,13 +84,38 @@ class AuthController extends Controller
         $redirect = '';
 
         if(Auth::user() && Auth::user()->role == 1){
-            $redirect = '/super-admin/dashboard';
+            if(Auth::user()->permission == 'yes')
+            {
+                $redirect = '/super-admin/dashboard';
+
+            }
+            else
+            {
+                $redirect = '/request-pending'; 
+            }
         }
         else if(Auth::user() && Auth::user()->role == 2){
-            $redirect = '/sub-admin/dashboard';
+            if(Auth::user()->permission == 'yes')
+            {
+                $redirect = '/sub-admin/dashboard';
+
+            }
+            else
+            {
+                $redirect = '/request-pending'; 
+            }
+            
         }
         else if(Auth::user() && Auth::user()->role == 3){
-            $redirect = '/admin/dashboard';
+            if(Auth::user()->permission == 'yes')
+            {
+                $redirect = '/admin/dashboard';
+
+            }
+            else
+            {
+                $redirect = '/request-pending'; 
+            }  
         }
         else{
             $redirect = '/dashboard';

@@ -10,12 +10,14 @@
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Permission</th>
         </tr>
         @foreach ($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                
                 <td>
                     @if ($user->roles == null)
                         User
@@ -25,6 +27,7 @@
 
                     @endif
                 </td>
+                <td>{{ $user->permission }}</td>
             </tr>
         @endforeach
     </table>

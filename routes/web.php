@@ -39,7 +39,7 @@ Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'
 Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
 
-
+Route::get('/request-pending',[AuthController::class, 'pendingview']);
 
 // ********** Super Admin Routes *********
 Route::group(['prefix' => 'super-admin','middleware'=>['web','isSuperAdmin']],function(){
@@ -48,6 +48,8 @@ Route::group(['prefix' => 'super-admin','middleware'=>['web','isSuperAdmin']],fu
     Route::get('/users',[SuperAdminController::class,'users'])->name('superAdminUsers');
     Route::get('/manage-role',[SuperAdminController::class,'manageRole'])->name('manageRole');
     Route::post('/update-role',[SuperAdminController::class,'updateRole'])->name('updateRole');
+    Route::get('/manage-permission',[SuperAdminController::class,'managePermission'])->name('managePermission');
+    Route::post('/update-permission',[SuperAdminController::class,'updatePermission'])->name('updatepermission');
 });
 
 // ********** Sub Admin Routes *********

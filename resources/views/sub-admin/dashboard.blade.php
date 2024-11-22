@@ -1,7 +1,7 @@
 @extends('layout.app')
-@section('title','Manager Dashboard')
+@section('title','Student Dashboard')
 @section('body')
-<h2 class="mb-4">Manager Dashbaord</h2>
+<h2 class="mb-4">Student Dashbaord</h2>
 <a href="/logout">Logout</a>
 @endsection
 {{-- @section('space-work')

@@ -18,7 +18,7 @@
                         <!-- Right side with form -->
                         <div class="col-md-6">
                             <div class="form-container">
-                                <h3 class="mb-4 text-center">Create Account</h3>
+                                <h3 class="mb-2 text-center">Create Account</h3>
                                 <form action="{{ route('register') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
@@ -61,6 +61,20 @@
                                         <input type="password" class="form-control" id="password_confirmation"
                                             placeholder="Confirm Password" name="password_confirmation" required>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Sign Up as</label>
+                                        <select class="form-control @error('role') is-invalid @enderror" id="role" name="role" required>
+                                            <option value="" disabled selected>Please Select at least one value</option>
+                                            <option value="teacher">Teacher</option>
+                                            <option value="student">Student</option>
+                                        </select>
+                                        @error('role')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    
 
                                     <button type="submit" class="btn btn-info w-100 mb-3 text-white">Sign Up</button>
                                     <a href="{{ route('google.login') }}" type="button" class="btn btn-dark w-100 mb-3"><img src="images/google.png"

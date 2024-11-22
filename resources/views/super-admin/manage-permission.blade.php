@@ -23,7 +23,7 @@
                 <label for="">Select Permission</label>
             </div>
             <div class="col-md-4">
-                <select name="confirmation" required class="form-control" style="border: 1px solid;">
+                <select name="confirmation" required class="form-control" id="confirmation" style="border: 1px solid;">
                     <option value="" disabled selected>Select Option</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>

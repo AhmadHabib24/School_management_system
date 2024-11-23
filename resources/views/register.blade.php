@@ -77,10 +77,10 @@
                                     
 
                                     <button type="submit" class="btn btn-info w-100 mb-3 text-white">Sign Up</button>
-                                    <a href="{{ route('google.login') }}" type="button" class="btn btn-dark w-100 mb-3"><img src="images/google.png"
+                                    <a href="{{ url('/google/login') }}" type="button" class="btn btn-dark w-100 mb-3"><img src="images/google.png"
                                             class="mx-3" alt="">Sign up with Google</a>
-                                    <button type="button" class="btn btn-warning w-100"><img src="images/vector.png"
-                                            class="mx-3" alt="">Sign up with Kakao</button>
+                                    <a href="{{route('kakao.login')}}" class="btn btn-warning w-100"><img src="images/vector.png"
+                                            class="mx-3" alt="">Sign up with Kakao</a>
                                 </form>
                                 </form>
 

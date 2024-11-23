@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\TeacherProfileController;
+use App\Http\Controllers\KakaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,8 @@ Route::group(['middleware'=>['web','isUser']],function(){
 });
 
 
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/google/login', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+Route::get('/login/kakao', [KakaoController::class, 'redirectToKakao'])->name('kakao.login');
+Route::get('/login/kakao/callback', [KakaoController::class, 'handleKakaoCallback']);
 

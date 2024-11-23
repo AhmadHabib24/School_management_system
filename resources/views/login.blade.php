@@ -44,15 +44,15 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                    <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                    <label class="form-check-label" for="remember">Remember me</label>
                   </div>
                   <a href="{{route('password.request')}}" class="text-decoration-none">Forgot your password?</a>
                 </div>
 
                 <button type="submit" class="btn btn-info w-100 mb-3 text-white" value="Login">Login</button>
-                <a href="{{ route('google.login') }}" class="btn btn-dark w-100 mb-3"><img src="{{ asset('images/google.png') }}" class="mx-3" alt="">Login with Google</a>
-                <button type="button" class="btn btn-warning w-100"><img src="{{ asset('images/vector.png') }}" class="mx-3" alt="">Login with Kakao</button>
+                <a href="{{ url('/google/login') }}" class="btn btn-dark w-100 mb-3"><img src="{{ asset('images/google.png') }}" class="mx-3" alt="">Login with Google</a>
+                <a href="{{route('kakao.login')}}" class="btn btn-warning w-100"><img src="{{ asset('images/vector.png') }}" class="mx-3" alt="">Login with Kakao</a>
               </form>
               <p class="mt-3 text-center">Not a member? <a href="{{ route('register') }}" class="text-decoration-none">Sign Up</a></p>
             </div>

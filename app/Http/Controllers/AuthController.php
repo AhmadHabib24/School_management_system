@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function loadRegister()
     {
         $role = Role::all();
-        if(Auth::user()){
+        if (Auth::user()) {
             $route = $this->redirectDash();
             return redirect($route)->with($role);
         }
@@ -31,7 +31,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'string|required|min:2',
             'email' => 'string|email|required|max:100|unique:users',
-            'password' =>'string|required|confirmed|min:6',
+            'password' => 'string|required|confirmed|min:6',
             'role' => 'required',
         ]);
         $role = Role::where('name', $request->role)->first();
@@ -43,12 +43,12 @@ class AuthController extends Controller
         $user->role = $role->id;
         $user->save();
 
-        return redirect('login')->with('success','Your Registration has been successfull.');
+        return redirect('login')->with('success', 'Your Registration has been successfull.');
     }
 
     public function loadLogin()
     {
-        if(Auth::user()){
+        if (Auth::user()) {
             $route = $this->redirectDash();
             return redirect($route);
         }
@@ -57,21 +57,26 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        // Validate the input
         $request->validate([
             'email' => 'string|required|email',
-            'password' => 'string|required'
+            'password' => 'string|required',
+            'remember' => 'nullable', // Optional "Remember Me" field
         ]);
+        // dd($request);
+        // Extract credentials and remember flag
+        $userCredential = $request->only('email', 'password');
+        $remember = $request->has('remember'); // Check if "Remember Me" is selected
 
-        $userCredential = $request->only('email','password');
-        if(Auth::attempt($userCredential)){
-
-            $route = $this->redirectDash();
-            return redirect($route)->with('success','Login Successful!');
-        }
-        else{
-            return back()->with('error','Username & Password is incorrect');
+        // Attempt to authenticate with "Remember Me"
+        if (Auth::attempt($userCredential, $remember)) {
+            $route = $this->redirectDash(); // Redirect to the appropriate dashboard
+            return redirect($route)->with('success', 'Login Successful!');
+        } else {
+            return back()->with('error', 'Username & Password is incorrect');
         }
     }
+
 
     public function loadDashboard()
     {
@@ -83,41 +88,25 @@ class AuthController extends Controller
     {
         $redirect = '';
 
-        if(Auth::user() && Auth::user()->role == 1){
-            if(Auth::user()->permission == 'yes')
-            {
+        if (Auth::user() && Auth::user()->role == 1) {
+            if (Auth::user()->permission == 'yes') {
                 $redirect = '/super-admin/dashboard';
-
+            } else {
+                $redirect = '/request-pending';
             }
-            else
-            {
-                $redirect = '/request-pending'; 
-            }
-        }
-        else if(Auth::user() && Auth::user()->role == 2){
-            if(Auth::user()->permission == 'yes')
-            {
+        } else if (Auth::user() && Auth::user()->role == 2) {
+            if (Auth::user()->permission == 'yes') {
                 $redirect = '/sub-admin/dashboard';
-
+            } else {
+                $redirect = '/request-pending';
             }
-            else
-            {
-                $redirect = '/request-pending'; 
-            }
-            
-        }
-        else if(Auth::user() && Auth::user()->role == 3){
-            if(Auth::user()->permission == 'yes')
-            {
+        } else if (Auth::user() && Auth::user()->role == 3) {
+            if (Auth::user()->permission == 'yes') {
                 $redirect = '/admin/dashboard';
-
+            } else {
+                $redirect = '/request-pending';
             }
-            else
-            {
-                $redirect = '/request-pending'; 
-            }  
-        }
-        else{
+        } else {
             $redirect = '/dashboard';
         }
 
@@ -132,6 +121,6 @@ class AuthController extends Controller
     }
     public function reset_password()
     {
-       return view('forgot-password');
+        return view('forgot-password');
     }
 }

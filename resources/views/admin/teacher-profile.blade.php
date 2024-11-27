@@ -14,7 +14,7 @@
 
                             </div>
                             <div class="p-image">
-                                <img src="../assets/images/img.png" class="upload-button" alt="">
+                                <img src="{{asset('images/img.png')}}" class="upload-button" alt="">
                                 <input class="file-upload" type="file" accept="image/*" />
                             </div>
                         </div>
@@ -53,6 +53,34 @@
                                 <input type="text" id="countryInput"
                                     class="tag-input @error('country') is-invalid @enderror" name="country"
                                     placeholder="Add tags..." value="{{ old('country') }}">
+                            </div>
+                            <div class="tag-dropdown" id="countryDropdown">
+                                <!-- Tag options with radio buttons -->
+                                <div class="tag-options">
+                                    <div class="custom-radio">
+                                        <input type="radio" id="radio1" class="me-5" id="tagLively" value="Lively" name="countryTag">
+                                        <label class="me-2" for="radio1"></label>
+                                      </div>
+                                    
+                                    <label for="tagPatience">Kenya</label>
+                                </div>
+                                <div class="tag-options">
+                                    <div class="custom-radio">
+                                        <input type="radio" id="radio1" class="me-5" id="tagTalkative" value="Talkative" name="countryTag">
+                                        <label class="me-2" for="radio1"></label>
+                                      </div>
+                                    
+                                    <label for="tagPatience">Armenia</label>
+                                   
+                                </div>
+                                <div class="tag-options">
+                                    <div class="custom-radio">
+                                        <input type="radio" id="radio1" class="me-5" id="tagPatience" value="Patience" name="countryTag">
+                                        <label class="me-2" for="radio1"></label>
+                                      </div>
+                                    
+                                    <label for="tagPatience">Japan</label>
+                                </div>
                             </div>
                             @error('country')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -110,6 +138,13 @@
                                     class="tag-input @error('teaching_style') is-invalid @enderror" name="teaching_style[]"
                                     placeholder="Add tags..." value="{{ old('teaching_style') }}">
                             </div>
+                            <div class="tag-dropdown" id="tagDropdown">
+                                <!-- Tag options -->
+                                <div class="tag-option" data-tag="Select">Select</div>
+                                <div class="tag-option" data-tag="Traditional">Traditional</div>
+                                <div class="tag-option" data-tag="Interactive">Interactive</div>
+                                <div class="tag-option" data-tag="Collaborative">Collaborative</div>
+                            </div>
                             @error('teaching_style')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -118,7 +153,7 @@
 
                     <!-- Submit and Save Buttons -->
                     <div class="button-group">
-                        <button type="button" class="btn custom-btn btn-secondary">Save</button>
+                        <a href="{{route('teacher-dashboard')}}" class="btn custom-btn btn-secondary">Skip</a>
                         <button type="submit" class="btn custom-btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -184,7 +219,7 @@
         });
     </script>
 
-    {{-- <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             // First Select Menu Logic
             const countryInput = document.getElementById("countryInput");
@@ -311,9 +346,9 @@
                 });
             });
         });
-    </script> --}}
+    </script> 
 
-    {{-- <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Form validation and submission handler
             document.getElementById("teacherProfileForm").addEventListener("submit", function(e) {
@@ -350,5 +385,5 @@
                 }
             }
         });
-    </script> --}}
+    </script>
 @endsection

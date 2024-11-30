@@ -6,13 +6,16 @@
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
                 <a href="{{ route('teacher-dashboard') }}" class="text-nowrap logo-img">
-                    <img src="{{ asset('images/loginlogo.png') }}" width="180" alt="loading" />
+                    <img src="{{ asset('images/logoblack.png') }}" width="180" alt="loading" />
                 </a>
                 <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                     <i class="ti ti-x fs-8"></i>
                 </div>
             </div>
             <!-- Sidebar navigation-->
+            @if (!isset($showcontent) || !$showcontent)
+                
+
             <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                 <ul id="sidebarnav">
                     <!-- Main Menu Label -->
@@ -33,7 +36,7 @@
 
                     <!-- Schedule -->
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('teacher.Schedule.index') }}" aria-expanded="false">
                             <span>
                                 <i class="fas fa-calendar-alt"></i>
                             </span>
@@ -99,6 +102,9 @@
                     </li>
                 </ul>
             </nav>
+
+
+            @endif
 
             <!-- End Sidebar navigation -->
         </div>
@@ -183,9 +189,8 @@
                         <div id="google_translate_element" class="custom-translate"></div>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                                <i class="ti ti-bell-ringing"></i>
+                                <i class="fas fa-solid fa-bell"></i>
                                 <div class="notification bg-danger rounded-circle"></div>
-
                             </a>
                         </li>
                     </ul>

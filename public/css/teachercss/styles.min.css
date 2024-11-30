@@ -5,8 +5,8 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import "../libs/simplebar/dist/simplebar.css";
-@import "../css/icons/tabler-icons/tabler-icons.css";
+@import "/libs/simplebar/dist/simplebar.css";
+/* @import "../css/icons/tabler-icons/tabler-icons.css"; */
 
 :root,
 [data-bs-theme=light] {
@@ -21393,4 +21393,147 @@ table.fc-header{
     font-size: 30px;
     line-height: 1;
   }
+
+
+
+
+ /* calender code */
+    #calendar {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 10px;
+    }
+
+    .day-name {
+        font-weight: bold;
+        padding: 10px 0;
+        background-color: #f3f3f3;
+    }
+
+    .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 5px;
+    }
+
+    .calendar-day {
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .calendar-day:hover {
+        background-color: #d1ecf1;
+    }
+
+    .calendar-day.event {
+        background-color: #78c0e2;
+        color: white;
+    }
+
+    .calendar-day.event:hover {
+        background-color: #6aa8c6;
+    }
+
+    .calendar-day span {
+        display: block;
+    }
+
+
+    /* Styling for time slots section */
+    #timeSlots {
+        margin-top: 20px;
+        
+        background-color: #f4f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    #timeSlotList {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .time-slot {
+        padding: 8px;
+        border: 1px solid #ddd;
+        margin: 5px 0;
+        border-radius: 5px;
+        background-color: #e9ecef;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .time-slot:hover {
+        background-color: #cce5ff;
+    }
+
+    #timeSlotList .time-slot.active {
+        background-color: #80c9f5;
+        font-weight: bold;
+    }
+
+
+    /* index page css */
+
+    .gradient-background {
+        background: linear-gradient(to right, white, #22ceff);
+      
+    }
+    .video-banner {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-banner video {
+        width: 100%;
+        height: auto;
+    }
+    
+    .video-banner .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background: rgba(0, 0, 0, 0.4); /* Transparent overlay */
+        text-align: center;
+    }
+
+
+    /* Trail Dashboard */
+    .random-color-cardyellow {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    .bg-custom-yellow
+    {
+      background-color: #FFD600;
+    }
+
+
   

@@ -84,7 +84,7 @@
                                 </form>
                                 </form>
 
-                                <p class="mt-3 text-center">Already a member? <a href="{{ route('login') }}"
+                                <p class="mt-3 text-center">Already a member? <a href="{{ route('loadLogin') }}"
                                         class="text-decoration-none">Login</a></p>
                             </div>
                         </div>

@@ -8,7 +8,6 @@
 
 </style>
 @section('body')
-
     <!--  Main wrapper -->
     <div class="">
         <!--  Header Start -->
@@ -186,6 +185,28 @@
                             <!-- Yearly Breakup -->
                             <div class="card overflow-hidden">
                                 <div class="card-body p-4">
+                                    <h5 class="card-title mb-9 fw-semibold">Calender</h5>
+                                    <div class="row align-items-center">
+                                        <div class="calendar-container">
+                                            <div class="calendar-header">
+                                                <button class="prev-month">&lt;</button>
+                                                <h5 class="current-month mt-2">2024 January</h5>
+                                                <button class="next-month">&gt;</button>
+                                            </div>
+                                            <div class="calendar">
+                                                <div class="days-of-week">
+                                                    <div>MON</div>
+                                                    <div>TUE</div>
+                                                    <div>WED</div>
+                                                    <div>THU</div>
+                                                    <div>FRI</div>
+                                                    <div>SAT</div>
+                                                    <div>SUN</div>
+                                                </div>
+                                                <div class="days"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h5 class="card-title mb-9 fw-semibold">Today class</h5>
                                     <div class="row align-items-center">
                                         <div class="random-color-cards-container">

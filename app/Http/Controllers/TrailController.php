@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class TrailController extends Controller
 {
-    //
     public function index()
     {
         return view('Trail.trailform');
@@ -44,6 +43,7 @@ class TrailController extends Controller
     
             // Try inserting data
             DB::table('free_trials')->insert($data);
+            
     
             // Check if the insert was successful
             $inserted = DB::table('free_trials')->where('email', $request->input('email'))->exists();

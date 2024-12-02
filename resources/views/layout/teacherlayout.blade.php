@@ -60,6 +60,19 @@
             @endif
         });
     </script>
+    <script>
+        // Get all the random-color-card elements
+        const randomCards = document.querySelectorAll('.random-color-card');
+
+        // Array of colors to choose from
+        const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FFC300'];
+
+        // Assign random border colors to each card
+        randomCards.forEach(card => {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            card.style.borderLeftColor = randomColor;
+        });
+    </script>
 
     <!-- Additional Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.1/main.min.js"></script>
@@ -73,6 +86,64 @@
     <script src="{{ asset('libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('js/teacherjs/dashboard.js') }}"></script>
+    <script>
+        const daysContainer = document.querySelector('.days');
+        const monthDisplay = document.querySelector('.current-month');
+        const prevButton = document.querySelector('.prev-month');
+        const nextButton = document.querySelector('.next-month');
+
+        let currentDate = new Date(); // Current date
+        let selectedDate = new Date(); // Keeps track of the selected month/year
+
+        function renderCalendar() {
+            const month = selectedDate.getMonth();
+            const year = selectedDate.getFullYear();
+            const firstDay = new Date(year, month, 1).getDay(); // Get the day of the week for the 1st
+            const lastDate = new Date(year, month + 1, 0).getDate(); // Last date of the month
+
+            // Update the displayed month and year
+            monthDisplay.textContent = `${year} ${selectedDate.toLocaleString('default', { month: 'long' })}`;
+
+            // Clear previous calendar days
+            daysContainer.innerHTML = '';
+
+            // Add empty divs for days before the 1st day of the month
+            for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+                daysContainer.innerHTML += `<div></div>`;
+            }
+
+            // Add days to the calendar
+            for (let day = 1; day <= lastDate; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+
+                // Highlight the current date
+                if (
+                    month === currentDate.getMonth() &&
+                    year === currentDate.getFullYear() &&
+                    day === currentDate.getDate()
+                ) {
+                    dayElement.classList.add('active');
+                }
+
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        // Event listeners for navigation
+        prevButton.addEventListener('click', () => {
+            selectedDate.setMonth(selectedDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextButton.addEventListener('click', () => {
+            selectedDate.setMonth(selectedDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Initialize the calendar
+        renderCalendar();
+    </script>
 </body>
 
 </html>
